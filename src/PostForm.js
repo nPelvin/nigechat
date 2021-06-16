@@ -10,7 +10,7 @@ const PostForm = () =>
           // headers: {
           //   "Content-Type": "application/json",
           // },
-          body: JSON.stringify({ text: "random body text" }),
+          body: { text: "random body text" },
         })
           .then((response) => response.json())
           .then((data) => console.log(data));
