@@ -3,6 +3,8 @@ import React from "react";
 const PostForm = () =>
 {
       const handleSubmit = (e) => {
+        
+        console.log("inside handleSubmit");
         e.preventDefault();
         // Const message???
         fetch("http://localhost:5000/messages", {
@@ -10,7 +12,7 @@ const PostForm = () =>
           // headers: {
           //   "Content-Type": "application/json",
           // },
-          body: { text: "random body text" },
+          body: { text: "random body text" }
         })
           .then((response) => response.json())
           .then((data) => console.log(data));
