@@ -1,36 +1,56 @@
-import React from "react";
+import React, {useState} from "react";
+import { API_URL } from "./App";
+import getLatest from "./LatestMessages";
+
 
 const PostForm = () =>
 {
-      const handleSubmit = (e) => {
+  const [from, setFrom] = useState("");
+  const [text, setText] = useState("");
+
+  
+
+      const handleSubmit = async (e) => {
         
-        console.log("inside handleSubmit");
         e.preventDefault();
-        // Const message???
-        fetch("http://localhost:5000/messages", {
+        await fetch(`${API_URL}/messages`, {
           method: "POST",
-          // headers: {
-          //   "Content-Type": "application/json",
-          // },
-          body: { text: "random body text" }
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ from: `${from}`, text: `${text}` }),
         })
           .then((response) => response.json())
           .then((data) => console.log(data));
+          // .then(() => getLatest());
       };
 
       return (
         <div>
           <h1>CYF Chat</h1>
           <h2>Send a message</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <p>
-              Name: <input type="text" name="from" placeholder="Your Name" />{" "}
+              Name:{" "}
+              <input
+                type="text"
+                name="from"
+                value={from}
+                placeholder="Your Name"
+                onChange={(e) => {
+                  setFrom(e.target.value);
+                }}
+              />{" "}
               <br />
               Message:{" "}
               <input
                 type="text"
                 name="text"
                 placeholder="The message..."
+                value={text}
+                onChange={(e) => {
+                  setText(e.target.value);
+                }}
               />{" "}
               <br />
             </p>

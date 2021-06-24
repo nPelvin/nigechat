@@ -1,17 +1,20 @@
-import logo from './logo.svg';
 import PostForm from './PostForm';
 import GetTest from './GetTest';
 import './App.css';
+import LatestMessages from './LatestMessages';
+
+export const API_URL =
+  "http://localhost:5000";
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <PostForm />
-        <GetTest />
-      </header>
+      <PostForm />
+      <GetTest />
+      <LatestMessages />
+      
     </div>
   );
 }
